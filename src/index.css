@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .print-break-inside-avoid {
+    break-inside: avoid;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm 2cm;
+  }
+  
+  body {
+    background-color: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide everything by default in print mode */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Only show the print area */
+  #printable-area, #printable-area * {
+    visibility: visible;
+  }
+  
+  #printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
